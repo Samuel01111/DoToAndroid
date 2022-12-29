@@ -1,6 +1,7 @@
 package br.com.leumas.doto.ui.todo
 
 import androidx.lifecycle.ViewModel
+import br.com.leumas.doto.ui.todo.models.Todo
 
 class TodoViewModel : ViewModel() {
 

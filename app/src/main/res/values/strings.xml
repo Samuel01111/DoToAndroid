@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">DoTo</string>
+
+    <!-- ToDo Strings  -->
+    <string name="todo_title">Title</string>
+    <string name="todo_description">Description</string>
+
 </resources>

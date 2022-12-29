@@ -1,13 +1,12 @@
 package br.com.leumas.doto.ui.todo.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import br.com.leumas.doto.R
-import br.com.leumas.doto.ui.todo.Todo
+import br.com.leumas.doto.ui.todo.models.Todo
 import kotlinx.android.synthetic.main.row_todo_layout.view.*
 
 class TodoListAdapter(
@@ -44,4 +43,3 @@ class TodoListAdapter(
         }
     }
 }
-

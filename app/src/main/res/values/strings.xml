@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">DoTo</string>
 
-    <!-- ToDo Strings  -->
+    <!-- ToDo Screen Strings  -->
     <string name="todo_title">Title</string>
     <string name="todo_description">Description</string>
+
+    <!-- AddToDo Screen Strings  -->
+    <string name="todo_add_button_save">Save</string>
+
+    <!-- ToDo Scrren Error Strings  -->
+
+    <string name="error_todo_title">Invalid Title</string>
+    <string name="error_todo_description">Invalid Title</string>
 
 </resources>

@@ -4,5 +4,6 @@ data class Todo(
     val title: String,
     val description: String,
     val isFavorite: Boolean,
-    val isCompleted: Boolean
+    val isCompleted: Boolean,
+    val createDate: String
 )

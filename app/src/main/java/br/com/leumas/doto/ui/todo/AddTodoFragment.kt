@@ -13,7 +13,6 @@ import br.com.leumas.doto.ui.todo.extentions.navigateWithAnimations
 import br.com.leumas.doto.ui.todo.models.Todo
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_add_todo.*
-import kotlinx.android.synthetic.main.row_todo_layout.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -56,12 +55,12 @@ class AddTodoFragment : Fragment() {
     fun listenToButtonTodoSaveClicked() {
         buttonTodoSave.setOnClickListener {
             val time = Calendar.getInstance().time
-            val formatter = SimpleDateFormat("yyyy-MM-dd")
+            val formatter = SimpleDateFormat(SIMPLE_DATE_FORMAT)
 
             val title = inputTodoTitle.text.toString()
             val description = inputTodoDescription.text.toString()
-            val isFavorite = checkbox_todo_favorite.isChecked
-            val isComplete = checkbox_todo_complete.isChecked
+            val isFavorite = checkboxTodoFavoriteAddScreen.isChecked
+            val isComplete = checkboxTodoCompleteAddScreen.isChecked
             val currentDate = formatter.format(time)
 
             if (viewModel.isValidForm(title, description)) {
@@ -83,4 +82,8 @@ class AddTodoFragment : Fragment() {
         TodoViewModel.INPUT_TITLE.first to inputLayoutTodoTitle,
         TodoViewModel.INPUT_DESCRIPTION.first to inputLayoutTodoDescription
     )
+
+    companion object {
+        private const val SIMPLE_DATE_FORMAT = "yyyy-MM-dd"
+    }
 }

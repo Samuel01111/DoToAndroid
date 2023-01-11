@@ -1,12 +1,16 @@
-package br.com.leumas.doto.ui.todo
+package br.com.leumas.doto.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.leumas.doto.R
-import br.com.leumas.doto.ui.todo.models.Todo
+import br.com.leumas.doto.data.TodoRepository
+import br.com.leumas.doto.ui.models.Todo
+import javax.inject.Inject
 
-class TodoViewModel : ViewModel() {
+class TodoViewModel @Inject constructor(
+    val repository: TodoRepository
+    ) : ViewModel() {
 
     sealed class FieldState {
         object ValidFields: FieldState()
@@ -24,6 +28,7 @@ class TodoViewModel : ViewModel() {
     }
 
     fun addTodoIntoList(todo: Todo) {
+        repository.saveTodo(todo)
         listOfTodo.add(todo)
     }
 

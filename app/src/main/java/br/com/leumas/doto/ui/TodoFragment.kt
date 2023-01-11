@@ -1,24 +1,39 @@
-package br.com.leumas.doto.ui.todo
+package br.com.leumas.doto.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import br.com.leumas.doto.MainActivity
 import br.com.leumas.doto.R
-import br.com.leumas.doto.ui.todo.adapter.TodoListAdapter
+import br.com.leumas.doto.ui.adapter.TodoListAdapter
 import kotlinx.android.synthetic.main.todo_fragment.*
+import javax.inject.Inject
 
 class TodoFragment : Fragment() {
 
-    private val viewModel: TodoViewModel by activityViewModels()
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by viewModels<TodoViewModel> { viewModelFactory }
 
     private val navigationController: NavController by lazy {
         findNavController()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        (requireActivity() as MainActivity)
+            .mainComponent
+            .inject(this)
     }
 
     override fun onCreateView(
@@ -31,10 +46,14 @@ class TodoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = recycler_view_todo_list
-        val layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+        val layoutManager = StaggeredGridLayoutManager(
+            1,
+            StaggeredGridLayoutManager.VERTICAL
+        )
 
         recyclerView.adapter = TodoListAdapter(this, viewModel.listOfTodo)
         recyclerView.layoutManager = layoutManager
+
 
         listenToOnAddTodoButtonClicked()
     }

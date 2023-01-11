@@ -1,4 +1,4 @@
-package br.com.leumas.doto.ui.todo.extentions
+package br.com.leumas.doto.ui.extentions
 
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections

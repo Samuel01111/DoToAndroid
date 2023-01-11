@@ -1,27 +1,42 @@
-package br.com.leumas.doto.ui.todo
+package br.com.leumas.doto.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import br.com.leumas.doto.MainActivity
 import br.com.leumas.doto.R
-import br.com.leumas.doto.ui.todo.extentions.navigateWithAnimations
-import br.com.leumas.doto.ui.todo.models.Todo
+import br.com.leumas.doto.ui.extentions.navigateWithAnimations
+import br.com.leumas.doto.ui.models.Todo
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_add_todo.*
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 class AddTodoFragment : Fragment() {
 
-    private val viewModel: TodoViewModel by activityViewModels()
+    @Inject
+    lateinit var viewModelProvider: ViewModelProvider.Factory
+
+    private val viewModel by viewModels<TodoViewModel> { viewModelProvider }
 
     private val navigationController: NavController by lazy {
         findNavController()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        (requireActivity() as MainActivity)
+            .mainComponent
+            .inject(this)
     }
 
     override fun onCreateView(

@@ -1,4 +1,4 @@
-package br.com.leumas.doto.ui.todo.models
+package br.com.leumas.doto.ui.models
 
 data class Todo(
     val title: String,

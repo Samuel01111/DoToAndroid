@@ -3,13 +3,15 @@ package br.com.leumas.doto.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import br.com.leumas.doto.R
-import br.com.leumas.doto.data.TodoRepository
+import br.com.leumas.doto.data.repository.TodoRepository
 import br.com.leumas.doto.ui.models.Todo
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class TodoViewModel @Inject constructor(
-    val repository: TodoRepository
+    private val repository: TodoRepository
     ) : ViewModel() {
 
     sealed class FieldState {
@@ -23,13 +25,28 @@ class TodoViewModel @Inject constructor(
     val fieldsStateEvent: LiveData<FieldState>
         get() = _fieldsStateEvent
 
+    private val _onDatabaseDataEvent = MutableLiveData<List<Todo>>()
+    val onDatabaseDataEvent: LiveData<List<Todo>>
+        get() = _onDatabaseDataEvent
+
     init {
-        getListOfTodo()
+        getAllTodo()
+        //getListOfTodoMocked()
     }
 
     fun addTodoIntoList(todo: Todo) {
-        repository.saveTodo(todo)
-        listOfTodo.add(todo)
+        //this call is viewmodel scoped
+        viewModelScope.launch {
+            repository.saveTodo(todo)
+            listOfTodo.add(todo)
+        }
+    }
+
+    private fun getAllTodo(){
+        viewModelScope.launch {
+           listOfTodo = repository.getTodos().toMutableList()
+            _onDatabaseDataEvent.postValue(listOfTodo)
+        }
     }
 
     fun isValidForm(title: String, description: String): Boolean {
@@ -50,7 +67,7 @@ class TodoViewModel @Inject constructor(
         return true
     }
 
-    private fun getListOfTodo() {
+    /*private fun getListOfTodoMocked() {
         listOfTodo = mutableListOf(
             Todo(
                 title = "VAMO TREINA",
@@ -88,7 +105,7 @@ class TodoViewModel @Inject constructor(
                 createDate = "08/10/2023"
             )
         )
-    }
+    } */
 
     companion object {
         val INPUT_TITLE = "INPUT_TITLE" to R.string.error_todo_title

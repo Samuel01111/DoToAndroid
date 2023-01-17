@@ -27,9 +27,23 @@ fun Todo.toTodoEntity(): TodoEntity {
     }
 }
 
+fun TodoEntity.toTodo(): Todo {
+    return with(this) {
+        Todo(
+            id = this.id,
+            title = this.title,
+            description = this.description,
+            isFavorite = this.isFavorite,
+            isCompleted = this.isCompleted,
+            createDate = this.createDate
+        )
+    }
+}
+
 fun Array<TodoEntity>.toTodoList(): List<Todo> {
     return this.map {
         Todo(
+            id = it.id,
             title = it.title,
             description = it.description,
             isFavorite = it.isFavorite,

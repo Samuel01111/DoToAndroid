@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import br.com.leumas.doto.MainActivity
 import br.com.leumas.doto.R
 import br.com.leumas.doto.ui.adapter.TodoListAdapter
+import br.com.leumas.doto.ui.extentions.navigateWithAnimations
 import br.com.leumas.doto.ui.models.Todo
 import kotlinx.android.synthetic.main.todo_fragment.*
 import javax.inject.Inject
@@ -85,6 +86,6 @@ class TodoFragment : Fragment() {
     }
 
     private fun openAddTodoScreen() {
-        navigationController.navigate(R.id.action_todoFragment_to_addTodoFragment)
+        navigationController.navigateWithAnimations(R.id.action_todoFragment_to_editTodoFragment)
     }
 }

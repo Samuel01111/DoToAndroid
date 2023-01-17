@@ -3,6 +3,7 @@ package br.com.leumas.doto.data.repository
 import android.content.Context
 import android.util.Log
 import br.com.leumas.doto.data.db.dao.TodoDao
+import br.com.leumas.doto.data.db.toTodo
 import br.com.leumas.doto.data.db.toTodoEntity
 import br.com.leumas.doto.data.db.toTodoList
 import br.com.leumas.doto.ui.models.Todo
@@ -22,5 +23,9 @@ class TodoDbDataSource @Inject constructor(
 
     override suspend fun getTodos(): List<Todo> {
         return todoDao.getTodos().toTodoList()
+    }
+
+    override suspend fun getTodoById(id: Int): Todo {
+        return todoDao.getTodoById(id).toTodo()
     }
 }

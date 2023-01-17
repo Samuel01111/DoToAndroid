@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import br.com.leumas.doto.R
+import br.com.leumas.doto.ui.TodoFragmentDirections
 import br.com.leumas.doto.ui.models.Todo
 import kotlinx.android.synthetic.main.row_todo_layout.view.*
 
@@ -22,6 +24,11 @@ class TodoListAdapter(
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         val note = todos[position]
 
+        holder.itemView.row_todo_layout_container.setOnClickListener {
+            val directions = TodoFragmentDirections
+                .actionTodoFragmentToEditTodoFragment(position)
+            fragment.findNavController().navigate(directions)
+        }
         holder.bindView(note)
     }
 

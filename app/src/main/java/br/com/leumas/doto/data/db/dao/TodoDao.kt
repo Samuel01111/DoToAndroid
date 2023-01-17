@@ -14,4 +14,7 @@ interface TodoDao {
 
     @Query("select * from todo_table")
     suspend fun getTodos(): Array<TodoEntity>
+
+    @Query("select * from todo_table where id == :id")
+    suspend fun getTodoById(id: Int): TodoEntity
 }

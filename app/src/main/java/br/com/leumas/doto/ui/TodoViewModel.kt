@@ -38,7 +38,6 @@ class TodoViewModel @Inject constructor(
         //this call is viewmodel scoped
         viewModelScope.launch {
             repository.saveTodo(todo)
-            listOfTodo.add(todo)
         }
     }
 

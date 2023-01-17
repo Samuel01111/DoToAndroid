@@ -13,16 +13,29 @@
         <action
             android:id="@+id/action_todoFragment_to_addTodoFragment"
             app:destination="@id/addTodoFragment" />
+        <action
+            android:id="@+id/action_todoFragment_to_editTodoFragment"
+            app:destination="@id/editTodoFragment" >
+        </action>
     </fragment>
 
     <fragment
         android:id="@+id/addTodoFragment"
-        android:name="br.com.leumas.doto.ui.AddTodoFragment"
+        android:name="br.com.leumas.doto.ui.add.AddTodoFragment"
         android:label="fragment_add_todo"
         tools:layout="@layout/fragment_add_todo" >
         <action
             android:id="@+id/action_addTodoFragment_to_todoFragment"
             app:destination="@id/todoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editTodoFragment"
+        android:name="br.com.leumas.doto.ui.edit.EditTodoFragment"
+        android:label="fragment_edit_todo"
+        tools:layout="@layout/fragment_edit_todo" >
+        <argument
+            android:name="todoId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

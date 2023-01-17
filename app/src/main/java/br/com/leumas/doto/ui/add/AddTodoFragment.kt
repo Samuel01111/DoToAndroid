@@ -1,4 +1,4 @@
-package br.com.leumas.doto.ui
+package br.com.leumas.doto.ui.add
 
 import android.content.Context
 import android.os.Bundle
@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import br.com.leumas.doto.MainActivity
 import br.com.leumas.doto.R
+import br.com.leumas.doto.ui.TodoViewModel
 import br.com.leumas.doto.ui.extentions.navigateWithAnimations
 import br.com.leumas.doto.ui.models.Todo
 import com.google.android.material.textfield.TextInputLayout
@@ -82,6 +83,7 @@ class AddTodoFragment : Fragment() {
                 //persist it with Room
                 viewModel.addTodoIntoList(
                     Todo(
+                        id,
                         title,
                         description,
                         isFavorite,

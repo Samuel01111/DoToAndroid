@@ -12,7 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import br.com.leumas.doto.MainActivity
 import br.com.leumas.doto.R
-import br.com.leumas.doto.ui.TodoViewModel
 import br.com.leumas.doto.ui.extentions.navigateWithAnimations
 import br.com.leumas.doto.ui.models.Todo
 import com.google.android.material.textfield.TextInputLayout
@@ -26,7 +25,7 @@ class AddTodoFragment : Fragment() {
     @Inject
     lateinit var viewModelProvider: ViewModelProvider.Factory
 
-    private val viewModel by viewModels<TodoViewModel> { viewModelProvider }
+    private val viewModel by viewModels<AddTodoViewModel> { viewModelProvider }
 
     private val navigationController: NavController by lazy {
         findNavController()
@@ -52,14 +51,14 @@ class AddTodoFragment : Fragment() {
 
         viewModel.fieldsStateEvent.observe(viewLifecycleOwner) { state ->
             when(state) {
-                is TodoViewModel.FieldState.InvalidFields -> {
+                is AddTodoViewModel.FieldState.InvalidFields -> {
                     val validationFields: Map<String, TextInputLayout> = initValidationFields()
                     state.fields.forEach { fieldError ->
                         validationFields[fieldError.first]?.error = getString(fieldError.second)
                     }
                 }
 
-                is TodoViewModel.FieldState.ValidFields -> {
+                is AddTodoViewModel.FieldState.ValidFields -> {
                     navigationController.navigateWithAnimations(R.id.action_addTodoFragment_to_todoFragment)
                 }
             }
@@ -68,7 +67,7 @@ class AddTodoFragment : Fragment() {
         listenToButtonTodoSaveClicked()
     }
 
-    fun listenToButtonTodoSaveClicked() {
+    private fun listenToButtonTodoSaveClicked() {
         buttonTodoSave.setOnClickListener {
             val time = Calendar.getInstance().time
             val formatter = SimpleDateFormat(SIMPLE_DATE_FORMAT)
@@ -81,9 +80,8 @@ class AddTodoFragment : Fragment() {
 
             if (viewModel.isValidForm(title, description)) {
                 //persist it with Room
-                viewModel.addTodoIntoList(
+                viewModel.saveTodo(
                     Todo(
-                        id,
                         title,
                         description,
                         isFavorite,
@@ -96,8 +94,8 @@ class AddTodoFragment : Fragment() {
     }
 
     private fun initValidationFields() = mapOf(
-        TodoViewModel.INPUT_TITLE.first to inputLayoutTodoTitle,
-        TodoViewModel.INPUT_DESCRIPTION.first to inputLayoutTodoDescription
+        AddTodoViewModel.INPUT_TITLE.first to inputLayoutTodoTitle,
+        AddTodoViewModel.INPUT_DESCRIPTION.first to inputLayoutTodoDescription
     )
 
     companion object {

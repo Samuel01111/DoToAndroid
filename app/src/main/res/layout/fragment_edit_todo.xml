@@ -16,6 +16,15 @@
         android:padding="16dp"
         tools:context=".ui.add.AddTodoFragment">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/todo_edit_screen_title"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/todo_edit_screen_title"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutTodoTitleEdit"
             style="@style/AppTextInputLayout"
@@ -30,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
-                android:text="@={viewModel.currentTodo.title}"
+                android:text="@{viewModel.currentTodo.title}"
                 android:inputType="text"
                 android:textColorHint="@color/black" />
 
@@ -51,6 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
+                android:text="@{viewModel.currentTodo.description}"
                 android:inputType="text"
                 android:textColorHint="@color/black" />
 
@@ -61,6 +71,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
+            android:checked="@{viewModel.currentTodo.favorite}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayoutTodoDescriptionEdit" />
 
@@ -69,6 +80,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
+            android:checked="@{viewModel.currentTodo.completed}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayoutTodoDescriptionEdit" />
 

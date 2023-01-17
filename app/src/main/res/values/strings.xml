@@ -10,12 +10,11 @@
 
     <!-- EditToDo Screen Strings  -->
     <string name="todo_edit_button_remove">Remove</string>
+    <string name="todo_edit_screen_title">Title</string>
 
-    <!-- ToDo Scrren Error Strings  -->
+    <!-- ToDo Screen Error Strings  -->
 
     <string name="error_todo_title">Invalid Title</string>
     <string name="error_todo_description">Invalid Title</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

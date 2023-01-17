@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import br.com.leumas.doto.MainActivity
-import br.com.leumas.doto.R
+import br.com.leumas.doto.databinding.FragmentEditTodoBinding
 import javax.inject.Inject
 
 class EditTodoFragment : Fragment() {
@@ -28,6 +28,10 @@ class EditTodoFragment : Fragment() {
         findNavController()
     }
 
+    private var _binding: FragmentEditTodoBinding? = null
+
+    private val binding get() = _binding!!
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
@@ -37,10 +41,13 @@ class EditTodoFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_edit_todo, container, false)
+    ): View {
+        _binding = FragmentEditTodoBinding.inflate(inflater, container, false)
+        _binding?.viewModel = viewModel
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,6 +59,11 @@ class EditTodoFragment : Fragment() {
     private fun setupEditScreenFields() {
         val id = args.todoId
         viewModel.fetchTodoById(id)
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+        viewModel.currentTodo.set(null)
     }
 }

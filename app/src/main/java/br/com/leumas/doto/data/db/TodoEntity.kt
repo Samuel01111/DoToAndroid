@@ -15,9 +15,10 @@ data class TodoEntity(
     val createDate: String
 )
 
-fun Todo.toTodoEntity(): TodoEntity {
+fun Todo.toTodoEntity(id: Int = 0): TodoEntity {
     return with(this) {
         TodoEntity(
+            id = id.toLong(),
             title = this.title,
             description = this.description,
             isFavorite = this.isFavorite,
@@ -30,7 +31,6 @@ fun Todo.toTodoEntity(): TodoEntity {
 fun TodoEntity.toTodo(): Todo {
     return with(this) {
         Todo(
-            id = this.id,
             title = this.title,
             description = this.description,
             isFavorite = this.isFavorite,
@@ -43,7 +43,6 @@ fun TodoEntity.toTodo(): Todo {
 fun Array<TodoEntity>.toTodoList(): List<Todo> {
     return this.map {
         Todo(
-            id = it.id,
             title = it.title,
             description = it.description,
             isFavorite = it.isFavorite,

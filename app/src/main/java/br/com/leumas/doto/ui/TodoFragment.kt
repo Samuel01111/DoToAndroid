@@ -2,6 +2,7 @@ package br.com.leumas.doto.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import br.com.leumas.doto.MainActivity
 import br.com.leumas.doto.R
+import br.com.leumas.doto.data.db.TodoEntity
 import br.com.leumas.doto.ui.adapter.TodoListAdapter
 import br.com.leumas.doto.ui.extentions.navigateWithAnimations
 import br.com.leumas.doto.ui.models.Todo
@@ -32,6 +34,8 @@ class TodoFragment : Fragment() {
         findNavController()
     }
 
+    private lateinit var recyclerView: RecyclerView
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
@@ -41,7 +45,8 @@ class TodoFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.todo_fragment, container, false)
@@ -49,13 +54,14 @@ class TodoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerView = recycler_view_todo_list
+        recyclerView = recycler_view_todo_list
         val layoutManager = StaggeredGridLayoutManager(
             1,
             StaggeredGridLayoutManager.VERTICAL
         )
-        setupRecyclerView(recyclerView, layoutManager, emptyList())
 
+        viewModel.getAllTodo()
+        setupRecyclerView(recyclerView, layoutManager, viewModel.listOfTodo)
         listenToOnAddTodoButtonClicked()
         listenToOnDatabaseDataEvent(recyclerView, layoutManager)
     }
@@ -69,7 +75,6 @@ class TodoFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
     }
 
-
     private fun listenToOnAddTodoButtonClicked() {
         floatingButtonAddTodo.setOnClickListener {
             openAddTodoScreen()
@@ -78,7 +83,7 @@ class TodoFragment : Fragment() {
 
     private fun listenToOnDatabaseDataEvent(
         recyclerView: RecyclerView,
-        layoutManager: LayoutManager
+        layoutManager: LayoutManager,
     ) {
         viewModel.onDatabaseDataEvent.observe(viewLifecycleOwner) {
             setupRecyclerView(recyclerView, layoutManager, it)
@@ -86,6 +91,12 @@ class TodoFragment : Fragment() {
     }
 
     private fun openAddTodoScreen() {
-        navigationController.navigateWithAnimations(R.id.action_todoFragment_to_editTodoFragment)
+        viewModel.listOfTodo.clear()
+        navigationController.navigateWithAnimations(R.id.action_todoFragment_to_addTodoFragment)
+    }
+
+    fun updateTodoIntoDataBase(todo: TodoEntity) {
+        Log.d("todooo", todo.isCompleted.toString() + todo.isFavorite.toString())
+        viewModel.updateTodo(todo)
     }
 }

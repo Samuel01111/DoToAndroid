@@ -91,8 +91,12 @@ class TodoFragment : Fragment() {
     }
 
     private fun openAddTodoScreen() {
-        viewModel.listOfTodo.clear()
+        clearList()
         navigationController.navigateWithAnimations(R.id.action_todoFragment_to_addTodoFragment)
+    }
+
+    fun clearList() {
+        viewModel.listOfTodo.clear()
     }
 
     fun updateTodoIntoDataBase(todo: TodoEntity) {

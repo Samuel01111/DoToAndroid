@@ -1,10 +1,8 @@
 package br.com.leumas.doto.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import br.com.leumas.doto.R
@@ -15,7 +13,7 @@ import br.com.leumas.doto.ui.models.Todo
 import kotlinx.android.synthetic.main.row_todo_layout.view.*
 
 class TodoListAdapter(
-    private val fragment: Fragment,
+    private val fragment: TodoFragment,
     private val todos: List<Todo>
 ) : RecyclerView.Adapter<TodoListAdapter.TodoViewHolder>() {
 
@@ -29,31 +27,35 @@ class TodoListAdapter(
         val todo = todos[position]
 
         holder.itemView.row_todo_layout_container.setOnClickListener {
+            fragment.clearList()
             val directions = TodoFragmentDirections
                 .actionTodoFragmentToEditTodoFragment(position + 1)
             fragment.findNavController().navigate(directions)
         }
 
         holder.itemView.checkbox_todo_complete.setOnClickListener {
-            Log.d("checkbox", (position + 1).toString())
             it.checkbox_todo_complete.isChecked
             val newTodo = todo.copy(
                 isCompleted = it.checkbox_todo_complete.isChecked
             )
-
-            (fragment as TodoFragment).updateTodoIntoDataBase(
+            fragment.updateTodoIntoDataBase(
                 newTodo.toTodoEntity(
                     position + 1
                 )
             )
         }
 
-        /*holder.itemView.checkbox_todo_favorite.setOnClickListener {
+        holder.itemView.checkbox_todo_favorite.setOnClickListener {
+            it.checkbox_todo_favorite.isChecked
             val newTodo = todo.copy(
                 isFavorite = it.checkbox_todo_favorite.isChecked
             )
-            (fragment as TodoFragment).updateTodoIntoDataBase(newTodo.toTodoEntity(position + 1))
-        }*/
+            fragment.updateTodoIntoDataBase(
+                newTodo.toTodoEntity(
+                    position + 1
+                )
+            )
+        }
 
         holder.bindView(todo)
     }

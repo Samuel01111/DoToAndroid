@@ -19,11 +19,15 @@ class TodoDbDataSource @Inject constructor(
     override suspend fun saveTodo(todo: Todo) {
         val todoEntity = todo.toTodoEntity()
         todoDao.saveTodo(todoEntity)
-        Log.d("TodoRepository", message)
+        Log.d("TodoDb", "todo saved: $todoEntity.toString()")
     }
 
     override suspend fun updateTodo(todo: TodoEntity) {
         todoDao.saveTodo(todo)
+    }
+
+    override suspend fun removeTodoById(id: Int) {
+        todoDao.deleteTodoById(id)
     }
 
     override suspend fun getTodos(): List<Todo> {

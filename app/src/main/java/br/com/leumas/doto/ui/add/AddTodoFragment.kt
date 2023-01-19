@@ -82,6 +82,7 @@ class AddTodoFragment : Fragment() {
                 //persist it with Room
                 viewModel.saveTodo(
                     Todo(
+                        0,
                         title,
                         description,
                         isFavorite,
@@ -99,6 +100,6 @@ class AddTodoFragment : Fragment() {
     )
 
     companion object {
-        private const val SIMPLE_DATE_FORMAT = "yyyy-MM-dd"
+        const val SIMPLE_DATE_FORMAT = "yyyy-MM-dd"
     }
 }

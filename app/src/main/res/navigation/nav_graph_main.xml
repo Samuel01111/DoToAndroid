@@ -15,8 +15,7 @@
             app:destination="@id/addTodoFragment" />
         <action
             android:id="@+id/action_todoFragment_to_editTodoFragment"
-            app:destination="@id/editTodoFragment" >
-        </action>
+            app:destination="@id/editTodoFragment" />
     </fragment>
 
     <fragment
@@ -33,9 +32,13 @@
         android:name="br.com.leumas.doto.ui.edit.EditTodoFragment"
         android:label="fragment_edit_todo"
         tools:layout="@layout/fragment_edit_todo" >
+
         <argument
             android:name="todoId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_editTodoFragment_to_todoFragment"
+            app:destination="@id/todoFragment" />
     </fragment>
 
 </navigation>

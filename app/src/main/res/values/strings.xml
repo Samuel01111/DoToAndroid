@@ -11,10 +11,14 @@
     <!-- EditToDo Screen Strings  -->
     <string name="todo_edit_button_remove">Remove</string>
     <string name="todo_edit_screen_title">Title</string>
+    <string name="todo_edit_on_save_message">Your Todo was saved with success! :)</string>
 
     <!-- ToDo Screen Error Strings  -->
-
     <string name="error_todo_title">Invalid Title</string>
     <string name="error_todo_description">Invalid Title</string>
 
+    <!-- ToDo Screen Dialog Strings  -->
+    <string name="dialog_todo_question">Sure you want <b>delete</b> this ToDo?</string>
+    <string name="dialog_todo_delete">Delete</string>
+    <string name="dialog_todo_cancel">Cancel</string>
 </resources>

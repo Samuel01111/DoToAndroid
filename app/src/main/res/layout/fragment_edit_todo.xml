@@ -67,7 +67,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
-            android:id="@+id/checkboxTodoFavoriteAddScreenEdit"
+            android:id="@+id/checkboxTodoFavoriteEditScreen"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
@@ -76,7 +76,7 @@
             app:layout_constraintTop_toBottomOf="@id/inputLayoutTodoDescriptionEdit" />
 
         <CheckBox
-            android:id="@+id/checkboxTodoCompleteAddScreenEdit"
+            android:id="@+id/checkboxTodoCompleteEditScreen"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
@@ -92,7 +92,7 @@
             android:text="@string/todo_add_button_save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/checkboxTodoCompleteAddScreenEdit" />
+            app:layout_constraintTop_toBottomOf="@id/checkboxTodoCompleteEditScreen" />
 
         <Button
             android:id="@+id/buttonTodoRemoveEdit"
@@ -106,7 +106,5 @@
             app:layout_constraintTop_toBottomOf="@id/buttonTodoSaveEdit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </layout>

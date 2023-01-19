@@ -43,45 +43,6 @@ class AddTodoViewModel @Inject constructor(
         return true
     }
 
-    /*private fun getListOfTodoMocked() {
-        listOfTodo = mutableListOf(
-            Todo(
-                title = "VAMO TREINA",
-                description = "não esquece do pré treino em mano tem uma par de coisa pra nós pega lá po",
-                isFavorite = true,
-                isCompleted = false,
-                createDate = "08/10/2023"
-            ),
-            Todo(
-                title = "VAMO TREINA",
-                description = "não esquece do pré treino em mano",
-                isFavorite = true,
-                isCompleted = false,
-                createDate = "08/10/2023"
-            ),
-            Todo(
-                title = "VAMO TREINA",
-                description = "não esquece do pré treino em mano, inclusive a agua tbm",
-                isFavorite = true,
-                isCompleted = false,
-                createDate = "08/10/2023"
-            ),
-            Todo(
-                title = "VAMO TREINA",
-                description = "não esquece do pré ",
-                isFavorite = true,
-                isCompleted = false,
-                createDate = "08/10/2023"
-            ),
-            Todo(
-                title = "VAMO TREINA",
-                description = "não esquece do pré treino em mano",
-                isFavorite = true,
-                isCompleted = false,
-                createDate = "08/10/2023"
-            )
-        )
-    } */
 
     sealed class FieldState {
         object ValidFields: FieldState()

@@ -2,11 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.DoTo" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#00EE18</item>
-        <item name="colorPrimaryVariant">#00B3B3</item>
+        <item name="colorPrimary">#A1CF60</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
@@ -18,9 +16,14 @@
         <item name="android:background" >@color/white</item>
     </style>
 
-    <style name="TextTitleScreen" parent="TextAppearance.AppCompat.Title" >
-        <item name="android:background">#EEE6DBCB</item>
+    <style name="TextTitleScreenGeneral" parent="TextAppearance.AppCompat.Title" >
+        <item name="android:background">#EEEFEAAE</item>
         <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextTitleEmptyListScreen">
+        <item name="android:background">#EEFFE430</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="CheckboxInputLayout" parent="Widget.AppCompat.CompoundButton.CheckBox" >

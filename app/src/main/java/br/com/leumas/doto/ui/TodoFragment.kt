@@ -3,9 +3,11 @@ package br.com.leumas.doto.ui
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -18,8 +20,10 @@ import br.com.leumas.doto.MainActivity
 import br.com.leumas.doto.R
 import br.com.leumas.doto.data.db.TodoEntity
 import br.com.leumas.doto.ui.adapter.TodoListAdapter
+import br.com.leumas.doto.ui.extentions.isNull
 import br.com.leumas.doto.ui.extentions.navigateWithAnimations
 import br.com.leumas.doto.ui.models.Todo
+import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.android.synthetic.main.todo_fragment.*
 import javax.inject.Inject
 
@@ -35,6 +39,10 @@ class TodoFragment : Fragment() {
     }
 
     private lateinit var recyclerView: RecyclerView
+
+    private lateinit var shimmer: ShimmerFrameLayout
+
+    private lateinit var emptyTextView: TextView
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -54,11 +62,19 @@ class TodoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = recycler_view_todo_list
         val layoutManager = StaggeredGridLayoutManager(
             1,
             StaggeredGridLayoutManager.VERTICAL
         )
+
+        recyclerView = recycler_view_todo_list
+        shimmer = placeholder_group
+        emptyTextView = text_view_empty_list
+
+        emptyTextView.visibility = View.GONE
+        recyclerView.visibility = View.GONE
+        shimmer.visibility = View.VISIBLE
+        shimmer.startShimmer()
 
         viewModel.getAllTodo()
         setupRecyclerView(recyclerView, layoutManager, viewModel.listOfTodo)
@@ -86,7 +102,20 @@ class TodoFragment : Fragment() {
         layoutManager: LayoutManager,
     ) {
         viewModel.onDatabaseDataEvent.observe(viewLifecycleOwner) {
-            setupRecyclerView(recyclerView, layoutManager, it)
+            if (!it.isNull()) {
+                setupRecyclerView(recyclerView, layoutManager, it ?: emptyList())
+
+                recyclerView.visibility = View.VISIBLE
+                shimmer.visibility = View.GONE
+            }
+
+            if (it?.isEmpty() == true) {
+                emptyTextView.visibility = View.VISIBLE
+                emptyTextView.text = getString(R.string.todo_empty_list)
+                emptyTextView.gravity = Gravity.CENTER
+                recyclerView.visibility = View.GONE
+                shimmer.visibility = View.GONE
+            }
         }
     }
 
@@ -97,6 +126,16 @@ class TodoFragment : Fragment() {
 
     fun clearList() {
         viewModel.listOfTodo.clear()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        shimmer.stopShimmer()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        shimmer.stopShimmer()
     }
 
     fun updateTodoIntoDataBase(todo: TodoEntity) {

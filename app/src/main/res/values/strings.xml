@@ -3,7 +3,8 @@
 
     <!-- ToDo Screen Strings  -->
     <string name="todo_title">Title</string>
-    <string name="todo_description">Description</string>
+    <string name="todo_description">Description </string>
+    <string name="todo_empty_list">There is none Todo created \n Create a Todo tapping the button +</string>
 
     <!-- AddToDo Screen Strings  -->
     <string name="todo_add_button_save">Save</string>

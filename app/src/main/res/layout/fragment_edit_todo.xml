@@ -17,7 +17,7 @@
         tools:context=".ui.add.AddTodoFragment">
 
         <TextView
-            style="@style/TextTitleScreen"
+            style="@style/TextTitleScreenGeneral"
             android:id="@+id/textViewTitleEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

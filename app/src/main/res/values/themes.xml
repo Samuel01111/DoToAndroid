@@ -15,10 +15,19 @@
     </style>
 
     <style name="AppTextInputLayout" parent="Widget.Design.TextInputLayout" >
-        <item name="android:background" >@color/grey</item>
+        <item name="android:background" >@color/white</item>
+    </style>
+
+    <style name="TextTitleScreen" parent="TextAppearance.AppCompat.Title" >
+        <item name="android:background">#EEE6DBCB</item>
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="CheckboxInputLayout" parent="Widget.AppCompat.CompoundButton.CheckBox" >
         <item name="android:colorBackground" >#FFEB3B</item>
+    </style>
+
+    <style name="ButtonStyle" parent="TextAppearance.AppCompat.Button" >
+        <item name="android:colorBackground" >#EEE6DBCB</item>
     </style>
 </resources>

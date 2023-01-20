@@ -17,13 +17,17 @@
         tools:context=".ui.add.AddTodoFragment">
 
         <TextView
+            style="@style/TextTitleScreen"
+            android:id="@+id/textViewTitleEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/todo_edit_screen_title"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@string/todo_edit_screen_title"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/inputLayoutTodoTitleEdit"
+            tools:text="@string/todo_edit_screen_title" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutTodoTitleEdit"
@@ -31,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/todo_title"
+            android:layout_marginTop="60dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -39,8 +44,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
-                android:text="@{viewModel.currentTodo.title}"
                 android:inputType="text"
+                android:text="@{viewModel.currentTodo.title}"
                 android:textColorHint="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -60,17 +65,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
-                android:text="@{viewModel.currentTodo.description}"
                 android:inputType="text"
+                android:text="@{viewModel.currentTodo.description}"
                 android:textColorHint="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
             android:id="@+id/checkboxTodoFavoriteEditScreen"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginTop="16dp"
+            android:button="@drawable/checkbox_favorite_selector"
             android:checked="@{viewModel.currentTodo.favorite}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayoutTodoDescriptionEdit" />
@@ -85,6 +91,7 @@
             app:layout_constraintTop_toBottomOf="@id/inputLayoutTodoDescriptionEdit" />
 
         <Button
+            style="@style/ButtonStyle"
             android:id="@+id/buttonTodoSaveEdit"
             android:layout_width="260dp"
             android:layout_height="60dp"
@@ -95,12 +102,13 @@
             app:layout_constraintTop_toBottomOf="@id/checkboxTodoCompleteEditScreen" />
 
         <Button
+            style="@style/ButtonStyle"
             android:id="@+id/buttonTodoRemoveEdit"
             android:layout_width="260dp"
             android:layout_height="60dp"
             android:layout_marginTop="16dp"
-            android:text="@string/todo_edit_button_remove"
             android:background="@color/red"
+            android:text="@string/todo_edit_button_remove"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonTodoSaveEdit" />

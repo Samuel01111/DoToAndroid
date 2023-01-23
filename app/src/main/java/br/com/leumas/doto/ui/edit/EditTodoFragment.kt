@@ -124,7 +124,7 @@ class EditTodoFragment : Fragment() {
                         navigationController.popBackStack()
                     }
                     setNegativeButton(R.string.dialog_todo_cancel
-                    ) { dialog, id ->
+                    ) { dialog, _ ->
                         dialog.cancel()
                     }
                 }

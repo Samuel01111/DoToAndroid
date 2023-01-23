@@ -77,7 +77,13 @@ class TodoFragment : Fragment() {
         shimmer.startShimmer()
 
         viewModel.getAllTodo()
-        setupRecyclerView(recyclerView, layoutManager, viewModel.listOfTodo)
+
+        setupRecyclerView(
+            recyclerView,
+            layoutManager,
+            viewModel.listOfTodo ?: emptyList()
+        )
+
         listenToOnAddTodoButtonClicked()
         listenToOnDatabaseDataEvent(recyclerView, layoutManager)
     }
@@ -93,7 +99,9 @@ class TodoFragment : Fragment() {
 
     private fun listenToOnAddTodoButtonClicked() {
         floatingButtonAddTodo.setOnClickListener {
-            openAddTodoScreen()
+            if (shimmer.visibility == View.GONE) {
+                openAddTodoScreen()
+            }
         }
     }
 
@@ -120,12 +128,12 @@ class TodoFragment : Fragment() {
     }
 
     private fun openAddTodoScreen() {
-        clearList()
+        viewModel.clearList()
         navigationController.navigateWithAnimations(R.id.action_todoFragment_to_addTodoFragment)
     }
 
     fun clearList() {
-        viewModel.listOfTodo.clear()
+        viewModel.clearList()
     }
 
     override fun onPause() {

@@ -43,7 +43,7 @@ class TodoListAdapter(
             )
             fragment?.updateTodoIntoDataBase(
                 newTodo.toTodoEntity(
-                    position + 1
+                    todo.id.toInt()
                 )
             )
         }
@@ -55,7 +55,7 @@ class TodoListAdapter(
             )
             fragment?.updateTodoIntoDataBase(
                 newTodo.toTodoEntity(
-                    position + 1
+                    todo.id.toInt()
                 )
             )
         }

@@ -15,7 +15,7 @@ class TodoViewModel @Inject constructor(
     private val repository: TodoRepository
     ) : ViewModel() {
 
-    var listOfTodo: MutableList<Todo> = mutableListOf()
+    var listOfTodo: MutableList<Todo>? = mutableListOf()
 
     private val _onDatabaseDataEvent = MutableLiveData<List<Todo>?>(null)
     val onDatabaseDataEvent: LiveData<List<Todo>?>
@@ -34,5 +34,24 @@ class TodoViewModel @Inject constructor(
         viewModelScope.launch {
             repository.updateTodo(todo)
         }
+    }
+
+    fun clearList() {
+        listOfTodo = null
+        _onDatabaseDataEvent.postValue(null)
+    }
+
+   fun MutableList<Todo>.organizeByFavorite(): MutableList<Todo> {
+        var listOfTodoFavorites: MutableList<Todo> = mutableListOf()
+
+        var listOfTodoNotFavorite: MutableList<Todo> = listOfTodo ?: mutableListOf()
+
+        listOfTodo?.forEach {
+            if (it.isFavorite) {
+                listOfTodoFavorites.add(it)
+            }
+            listOfTodo?.remove(it)
+        }
+       return mutableListOf()
     }
 }

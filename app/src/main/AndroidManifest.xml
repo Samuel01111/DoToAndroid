@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".TodoApplication"
-        android:theme="@style/Theme.DoTo"
+        android:theme="@style/Theme.DoTo.Custom"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"

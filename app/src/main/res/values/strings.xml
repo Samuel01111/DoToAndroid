@@ -8,11 +8,11 @@
 
     <!-- AddToDo Screen Strings  -->
     <string name="todo_add_button_save">Save</string>
-    <string name="todo_add_screen_title">Create Todo Screen</string>
+    <string name="todo_add_screen_title">Create Todo</string>
 
     <!-- EditToDo Screen Strings  -->
     <string name="todo_edit_button_remove">Remove</string>
-    <string name="todo_edit_screen_title">Edit Todo Screen</string>
+    <string name="todo_edit_screen_title">Edit Todo</string>
     <string name="todo_edit_on_save_message">Your Todo was saved with success! :)</string>
 
     <!-- ToDo Screen Error Strings  -->

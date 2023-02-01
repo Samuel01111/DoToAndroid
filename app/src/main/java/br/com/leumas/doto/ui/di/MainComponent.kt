@@ -19,5 +19,4 @@ interface MainComponent {
     fun inject(fragment: TodoFragment)
     fun inject(fragment: AddTodoFragment)
     fun inject(fragment: EditTodoFragment)
-
 }

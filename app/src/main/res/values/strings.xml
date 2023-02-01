@@ -4,16 +4,16 @@
     <!-- ToDo Screen Strings  -->
     <string name="todo_title">Title</string>
     <string name="todo_description">Description </string>
-    <string name="todo_empty_list">There is none Todo created \n Create a Todo tapping the button +</string>
+    <string name="todo_empty_list">There is none ToDo created \n Create a ToDo tapping the button +</string>
 
     <!-- AddToDo Screen Strings  -->
     <string name="todo_add_button_save">Save</string>
-    <string name="todo_add_screen_title">Create Todo</string>
+    <string name="todo_add_screen_title">Create ToDo</string>
 
     <!-- EditToDo Screen Strings  -->
     <string name="todo_edit_button_remove">Remove</string>
-    <string name="todo_edit_screen_title">Edit Todo</string>
-    <string name="todo_edit_on_save_message">Your Todo was saved with success! :)</string>
+    <string name="todo_edit_screen_title">Edit ToDo</string>
+    <string name="todo_edit_on_save_message">Your ToDo was saved with success! :)</string>
 
     <!-- ToDo Screen Error Strings  -->
     <string name="error_todo_title">Invalid Title</string>

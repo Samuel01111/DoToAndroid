@@ -2,7 +2,6 @@ package br.com.leumas.doto.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -66,15 +65,11 @@ class TodoFragment : Fragment() {
             1,
             StaggeredGridLayoutManager.VERTICAL
         )
-
         recyclerView = recycler_view_todo_list
         shimmer = placeholder_group
         emptyTextView = text_view_empty_list
 
-        emptyTextView.visibility = View.GONE
-        recyclerView.visibility = View.GONE
-        shimmer.visibility = View.VISIBLE
-        shimmer.startShimmer()
+        shimmerInitialSetup()
 
         viewModel.getAllTodo()
 
@@ -86,6 +81,13 @@ class TodoFragment : Fragment() {
 
         listenToOnAddTodoButtonClicked()
         listenToOnDatabaseDataEvent(recyclerView, layoutManager)
+    }
+
+    private fun shimmerInitialSetup() {
+        emptyTextView.visibility = View.GONE
+        recyclerView.visibility = View.GONE
+        shimmer.visibility = View.VISIBLE
+        shimmer.startShimmer()
     }
 
     private fun setupRecyclerView(
@@ -147,7 +149,6 @@ class TodoFragment : Fragment() {
     }
 
     fun updateTodoIntoDataBase(todo: TodoEntity) {
-        Log.d("todooo", todo.isCompleted.toString() + todo.isFavorite.toString())
         viewModel.updateTodo(todo)
     }
 }

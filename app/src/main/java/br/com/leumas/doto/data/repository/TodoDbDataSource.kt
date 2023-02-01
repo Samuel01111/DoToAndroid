@@ -1,6 +1,5 @@
 package br.com.leumas.doto.data.repository
 
-import android.content.Context
 import android.util.Log
 import br.com.leumas.doto.data.db.TodoEntity
 import br.com.leumas.doto.data.db.dao.TodoDao
@@ -11,9 +10,7 @@ import br.com.leumas.doto.ui.models.Todo
 import javax.inject.Inject
 
 class TodoDbDataSource @Inject constructor(
-    val context: Context,
-    private val todoDao: TodoDao,
-    private val message: String
+    private val todoDao: TodoDao
 ): TodoRepository {
 
     override suspend fun saveTodo(todo: Todo) {

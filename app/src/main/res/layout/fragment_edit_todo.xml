@@ -31,7 +31,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutTodoTitleEdit"
-            style="@style/AppTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/todo_title"
@@ -45,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
                 android:inputType="text"
+                android:shadowColor="@color/black"
                 android:text="@{viewModel.currentTodo.title}"
                 android:textColorHint="@color/black" />
 
@@ -52,7 +52,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutTodoDescriptionEdit"
-            style="@style/AppTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -66,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:imeOptions="actionNext"
                 android:inputType="text"
+                android:shadowColor="@color/black"
                 android:text="@{viewModel.currentTodo.description}"
                 android:textColorHint="@color/black" />
 

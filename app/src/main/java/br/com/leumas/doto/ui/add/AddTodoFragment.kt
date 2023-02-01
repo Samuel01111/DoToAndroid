@@ -49,8 +49,13 @@ class AddTodoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        listenToFieldsStateEvent()
+        listenToButtonTodoSaveClicked()
+    }
+
+    private fun listenToFieldsStateEvent() {
         viewModel.fieldsStateEvent.observe(viewLifecycleOwner) { state ->
-            when(state) {
+            when (state) {
                 is AddTodoViewModel.FieldState.InvalidFields -> {
                     val validationFields: Map<String, TextInputLayout> = initValidationFields()
                     state.fields.forEach { fieldError ->
@@ -63,8 +68,6 @@ class AddTodoFragment : Fragment() {
                 }
             }
         }
-
-        listenToButtonTodoSaveClicked()
     }
 
     private fun listenToButtonTodoSaveClicked() {
@@ -79,7 +82,6 @@ class AddTodoFragment : Fragment() {
             val currentDate = formatter.format(time)
 
             if (viewModel.isValidForm(title, description)) {
-                //persist it with Room
                 viewModel.saveTodo(
                     Todo(
                         0,

@@ -8,8 +8,8 @@ import br.com.leumas.doto.ui.models.Todo
 data class TodoEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val description: String,
     val title: String,
+    val description: String,
     val isFavorite: Boolean,
     val isCompleted: Boolean,
     val createDate: String

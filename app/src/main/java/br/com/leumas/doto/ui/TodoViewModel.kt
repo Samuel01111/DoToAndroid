@@ -13,14 +13,13 @@ import javax.inject.Inject
 
 class TodoViewModel @Inject constructor(
     private val repository: TodoRepository
-    ) : ViewModel() {
+) : ViewModel() {
 
     var listOfTodo: MutableList<Todo>? = mutableListOf()
 
     private val _onDatabaseDataEvent = MutableLiveData<List<Todo>?>(null)
     val onDatabaseDataEvent: LiveData<List<Todo>?>
         get() = _onDatabaseDataEvent
-
 
     fun getAllTodo() {
         viewModelScope.launch {
@@ -41,7 +40,8 @@ class TodoViewModel @Inject constructor(
         _onDatabaseDataEvent.postValue(null)
     }
 
-   fun MutableList<Todo>.organizeByFavorite(): MutableList<Todo> {
+    //Todo: organize the favorites ToDo's upper at the list.
+    fun MutableList<Todo>.organizeByFavorite(): MutableList<Todo> {
         var listOfTodoFavorites: MutableList<Todo> = mutableListOf()
 
         var listOfTodoNotFavorite: MutableList<Todo> = listOfTodo ?: mutableListOf()
@@ -52,6 +52,6 @@ class TodoViewModel @Inject constructor(
             }
             listOfTodo?.remove(it)
         }
-       return mutableListOf()
+        return mutableListOf()
     }
 }

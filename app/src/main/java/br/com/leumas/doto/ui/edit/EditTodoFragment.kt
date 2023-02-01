@@ -65,8 +65,15 @@ class EditTodoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observeFieldsStateEvent()
+        listenToOnSaveButtonClicked()
+        listenToOnRemoveButtonClicked()
+        setupEditScreenFields()
+    }
+
+    private fun observeFieldsStateEvent() {
         viewModel.fieldsStateEvent.observe(viewLifecycleOwner) { state ->
-            when(state) {
+            when (state) {
                 is EditTodoViewModel.FieldState.InvalidFields -> {
                     val validationFields: Map<String, TextInputLayout> = initValidationFields()
                     state.fields.forEach { fieldError ->
@@ -79,10 +86,6 @@ class EditTodoFragment : Fragment() {
                 }
             }
         }
-
-        listenToOnSaveButtonClicked()
-        listenToOnRemoveButtonClicked()
-        setupEditScreenFields()
     }
 
     private fun listenToOnSaveButtonClicked() {
@@ -113,25 +116,30 @@ class EditTodoFragment : Fragment() {
 
     private fun listenToOnRemoveButtonClicked() {
         buttonTodoRemoveEdit.setOnClickListener {
-
-            val alertDialog: AlertDialog? = activity?.let {
-                val builder = AlertDialog.Builder(it)
-                builder.apply {
-                    setMessage(R.string.dialog_todo_question)
-                    setPositiveButton(R.string.dialog_todo_delete
-                    ) { _, _ ->
-                        viewModel.removeTodoById(todoId)
-                        navigationController.popBackStack()
-                    }
-                    setNegativeButton(R.string.dialog_todo_cancel
-                    ) { dialog, _ ->
-                        dialog.cancel()
-                    }
-                }
-                builder.create()
-            }
-            alertDialog?.show()
+            showConfirmDialog()
         }
+    }
+
+    private fun showConfirmDialog() {
+        val alertDialog: AlertDialog? = activity?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.apply {
+                setMessage(R.string.dialog_todo_question)
+                setPositiveButton(
+                    R.string.dialog_todo_delete
+                ) { _, _ ->
+                    viewModel.removeTodoById(todoId)
+                    navigationController.popBackStack()
+                }
+                setNegativeButton(
+                    R.string.dialog_todo_cancel
+                ) { dialog, _ ->
+                    dialog.cancel()
+                }
+            }
+            builder.create()
+        }
+        alertDialog?.show()
     }
 
     private fun setupEditScreenFields() {

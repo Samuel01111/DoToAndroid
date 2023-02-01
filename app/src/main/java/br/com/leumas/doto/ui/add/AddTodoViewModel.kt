@@ -19,7 +19,6 @@ class AddTodoViewModel @Inject constructor(
         get() = _fieldsStateEvent
 
     fun saveTodo(todo: Todo) {
-        //this call is viewmodel scoped
         viewModelScope.launch {
             repository.saveTodo(todo)
         }

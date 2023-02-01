@@ -11,5 +11,4 @@ class StringModule {
     fun provideString(): String {
         return "That's a test provided message"
     }
-
 }

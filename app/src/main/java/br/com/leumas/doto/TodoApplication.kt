@@ -10,7 +10,7 @@ class TodoApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        //instanciates the grath of fragments and activitys
+        //instanciates the graph of fragments and activities
         appComponent = DaggerApplicationComponent
             .factory()
             .create(this)

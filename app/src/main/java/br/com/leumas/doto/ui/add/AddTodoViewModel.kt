@@ -30,6 +30,10 @@ class AddTodoViewModel @Inject constructor(
             invalidFields.add(INPUT_TITLE)
         }
 
+        if (title.length > 20) {
+            invalidFields.add(INPUT_TITLE_LARGE)
+        }
+
         if (description.isEmpty()) {
             invalidFields.add(INPUT_DESCRIPTION)
         }
@@ -50,6 +54,7 @@ class AddTodoViewModel @Inject constructor(
 
     companion object {
         val INPUT_TITLE = "INPUT_TITLE" to R.string.error_todo_title
+        val INPUT_TITLE_LARGE = "INPUT_TITLE_LARGE" to R.string.error_todo_title_too_large
         val INPUT_DESCRIPTION = "INPUT_DESCRIPTION" to R.string.error_todo_description
     }
 }

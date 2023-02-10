@@ -98,6 +98,7 @@ class AddTodoFragment : Fragment() {
 
     private fun initValidationFields() = mapOf(
         AddTodoViewModel.INPUT_TITLE.first to inputLayoutTodoTitle,
+        AddTodoViewModel.INPUT_TITLE_LARGE.first to inputLayoutTodoTitle,
         AddTodoViewModel.INPUT_DESCRIPTION.first to inputLayoutTodoDescription
     )
 

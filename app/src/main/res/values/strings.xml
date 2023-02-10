@@ -17,6 +17,7 @@
 
     <!-- ToDo Screen Error Strings  -->
     <string name="error_todo_title">Invalid Title</string>
+    <string name="error_todo_title_too_large">Too Large Title</string>
     <string name="error_todo_description">Invalid Title</string>
 
     <!-- ToDo Screen Dialog Strings  -->

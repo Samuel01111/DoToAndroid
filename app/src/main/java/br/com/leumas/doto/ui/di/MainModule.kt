@@ -1,7 +1,7 @@
 package br.com.leumas.doto.ui.di
 
 import androidx.lifecycle.ViewModel
-import br.com.leumas.daggerApp.di.ViewModelKey
+import br.com.leumas.doto.di.ViewModelKey
 import br.com.leumas.doto.ui.TodoViewModel
 import br.com.leumas.doto.ui.add.AddTodoViewModel
 import br.com.leumas.doto.ui.edit.EditTodoViewModel

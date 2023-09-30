@@ -1,7 +1,6 @@
 package br.com.leumas.doto.di
 
 import android.content.Context
-import br.com.leumas.daggerApp.di.ViewModelBuilderModule
 import br.com.leumas.doto.data.db.AppDataBaseModule
 import br.com.leumas.doto.ui.di.MainComponent
 import dagger.BindsInstance

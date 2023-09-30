@@ -1,4 +1,4 @@
-package br.com.leumas.daggerApp.di
+package br.com.leumas.doto.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
